@@ -32,14 +32,6 @@ class Route
     @stations = [start_station, finite_station]
   end
 
-  def set_start_station
-    @stations.start
-  end
-
-  def set_finite_station
-    @stations.finite
-  end
-
   def add_intermediate_station(station)
     @stations.insert(1, station)
   end
