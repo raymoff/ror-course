@@ -16,7 +16,7 @@ class Station
   end
 
   def trains_types(type)
-    @trains.select{ |train| train.type == type }
+    @trains.select { |train| train.type == type }
   end
 
   def send_train(train)
@@ -49,14 +49,14 @@ end
 class Train
   attr_reader :type, :speed, :route, :carriages_count
 
-  def initialize(number, type, carriages_count, :speed)
+  def initialize(number, type, carriages_count, speed)
     @number = number
     @type = type
     @carriages_count = carriages_count
     @speed = speed
   end
 
-  def increase_speed (speed)
+  def increase_speed(speed)
     @speed += speed
   end
 
