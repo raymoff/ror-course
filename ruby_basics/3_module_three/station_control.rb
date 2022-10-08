@@ -1,3 +1,60 @@
+# Класс Станция
+class Station
+  attr_reader :name, :trains
+
+  def initialize(name)
+    @name = name
+    @trains = []
+  end
+
+  def accept_train(train)
+    @trains << train
+  end
+
+  def show_trains_list
+    @trains.each { |train| puts train }
+  end
+
+  def trains_types(type)
+    @trains.select { |train| train.type == type }
+  end
+
+  def send_train(train)
+    @trains.delete(train)
+  end
+end
+
+# Класс Маршрут
+class Route
+  attr_reader :stations
+
+  def initialize(start_station, finite_station)
+    @stations = [start_station, finite_station]
+  end
+
+  def start_station
+    stations.first
+  end
+
+  def finite_station
+    stations.last
+  end
+
+  def add_intermediate_station(station)
+    stations.insert(-2, station)
+  end
+
+  def delete_intermediate_station(station)
+    allowed_stations = stations.slice(1...-1)
+    stations.delete(station) if allowed_stations.include?(station)
+  end
+
+  def show_stations
+    stations.each { |station| puts station }
+  end
+end
+
+# Класс Поезд
 class Train
   attr_accessor :speed
   attr_reader :type, :route, :carriages_count
@@ -63,3 +120,14 @@ class Train
     end
   end
 end
+
+# load './train.rb'
+# tr1 = Train.new("tr1", 'cargo', 44)
+# tr2 = Train.new("tr2", 'cargo', 56)
+# tr3 = Train.new("tr3", 'passenger', 12)
+# tr4 = Train.new("tr4", 'passenger', 15)
+# tr1.accept_route(rt)
+# tr2.accept_route(rt)
+# tr3.accept_route(rt)
+# tr4.accept_route(rt)
+# tr1.go_to_next_station
